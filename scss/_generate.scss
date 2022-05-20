@@ -1,0 +1,72 @@
+@use "./index" as *;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+:root{
+    //Set all colours and shades
+    @each $color, $shades in $background-colors{
+        @each $shade, $value in $shades{
+            --clr-#{$color}-#{$shade}: #{$value};
+        }
+    }
+
+    //Loop through the font sizes and set the media queries and size
+    @each $screen-size, $font-size in $font-sizes {
+        @if $screen-size == small {
+            @each $size, $value in $font-size {
+                --fs-#{$size}: #{$value};
+            }
+        }@else if $screen-size == medium{
+            @include mq(medium) {
+                @each $size, $value in $font-size {
+                    --fs-#{$size}: #{$value};
+                }
+            }
+        }@else if $screen-size == large{
+            @include mq(large) {
+                @each $size, $value in $font-size {
+                    --fs-#{$size}: #{$value};
+                }
+            }
+        }@else{
+            @include auto_font_size(#{$auto-min}, #{$auto-val}, #{$auto-max});
+        }
+    }
+}
+
+@each $color, $shades in $background-colors {
+        @each $shade, $value in $shades{
+            .#{$color}-#{$shade}{
+                background: $value;
+            }
+        }
+}
+
+@each $color, $shades in $font-colors {
+    @each $shade, $value in $shades{
+        .#{$color}-#{$shade}{
+            color: $value;
+        }
+    }
+}
+
+@each $margin in $margins{
+    @include generate_margins($margin);
+}
+
+@each $padding in $paddings{
+    @include generate_padding($padding);
+}
+
+.auto-font{
+    font-size: var(--auto-font);
+}
+
+.center{
+    text-align: center;
+    margin: 0 auto;
+}

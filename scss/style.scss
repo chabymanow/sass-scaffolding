@@ -1,0 +1,29 @@
+@use "./generate" as *;
+
+.hero{
+    width: 100vw;
+    height: 500px;
+    margin: 0 auto;
+}
+
+h1{
+    font-size: var(--auto-font);
+}
+
+p{
+    font-size: var(--fs-300);
+}
+
+.text_section{
+    min-width: 20em;
+    max-width: 50em;
+    width: 70vw;
+    margin: 0 auto;
+}
+
+.paragraph{
+    min-width: 20em;
+    max-width: 50em;
+    width: 70vw;
+    text-align: center;
+}

@@ -1,0 +1,81 @@
+$margins:(mg-l, mg-t, mg-r, mg-b, mg-v, mg-h, mg-a);
+$margin-sizes:(1rem, 2rem, 3rem, 4rem, 5rem);
+
+$paddings:(pd-l, pd-t, pd-r, pd-b, pd-v, pd-h, pd-a);
+$padding-sizes:(1rem, 2rem, 3rem, 4rem, 5rem);
+
+@mixin generate_margins($margin){
+    @for $i from 1 through length($margin-sizes){
+        @if $margin == mg-l{
+            .#{$margin}-#{$i}{
+                margin: 0 0 0 nth($margin-sizes, $i);
+            }
+        }@else if $margin == mg-t{
+            .#{$margin}-#{$i}{
+                margin: nth($margin-sizes, $i) 0 0 0;
+            }
+        }@else if $margin == mg-r{
+            .#{$margin}-#{$i}{
+                margin: 0 nth($margin-sizes, $i) 0 0;
+            }
+        }@else if $margin == mg-b{
+            .#{$margin}-#{$i}{
+                margin: 0 0 nth($margin-sizes, $i) 0;
+            }
+        }@else if $margin == mg-v{
+            .#{$margin}-#{$i}{
+                margin: nth($margin-sizes, $i) 0;
+            }
+        }@else if $margin == mg-h{
+            .#{$margin}-#{$i}{
+                margin: 0 nth($margin-sizes, $i);
+            }
+        }@else if $margin == mg-a{
+            .#{$margin}-#{$i}{
+                margin: nth($margin-sizes, $i);
+            }
+        }
+        
+
+    }
+}
+
+@mixin generate_padding($padding){
+    @for $i from 1 through length($padding-sizes){
+        @if $padding == pd-l{
+            .#{$padding}-#{$i}{
+                padding: 0 0 0 nth($padding-sizes, $i);
+            }
+        }@else if $padding == pd-t{
+            .#{$padding}-#{$i}{
+                padding: nth($padding-sizes, $i) 0 0 0;
+            }
+        }@else if $padding == pd-r{
+            .#{$padding}-#{$i}{
+                padding: 0 nth($padding-sizes, $i) 0 0;
+            }
+        }@else if $padding == pd-b{
+            .#{$padding}-#{$i}{
+                padding: 0 0 nth($padding-sizes, $i) 0;
+            }
+        }@else if $padding == pd-v{
+            .#{$padding}-#{$i}{
+                padding: nth($padding-sizes, $i) 0;
+            }
+        }@else if $padding == pd-h{
+            .#{$padding}-#{$i}{
+                padding: 0 nth($padding-sizes, $i);
+            }
+        }@else if $padding == pd-a{
+            .#{$padding}-#{$i}{
+                padding: nth($padding-sizes, $i);
+            }
+        }
+        
+
+    }
+}
+
+@mixin auto_font_size($min, $val, $max){
+        --auto-font :clamp(#{$min}em, #{$val}vw + .1rem, #{$max}rem);
+}
